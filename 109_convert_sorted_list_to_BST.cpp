@@ -102,3 +102,47 @@ public:
         return root;
     }
 };
+
+
+
+/*
+another approach 
+without extra space
+here the splitListInMiddle function is splitting the list in to two parts like in my above solution i am doing in "HELP" function with mid.
+the slow pointer is at the middle position of the linked list.
+but here problem is that, we will loose our original linked list as we are modifying prev->next to null.
+so if we want to preserve our linked list then we need extra space to carry out operation or we need traverse again and again.
+*/ 
+
+class Solution3 {
+    ListNode* splitListInMiddle(ListNode* nd)
+    {
+        ListNode* fast = nd;
+        ListNode* slow = nd;
+        ListNode* prev = NULL;
+        while(slow && fast && fast->next)
+        {
+            prev = slow;
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        
+        if (prev != NULL) prev->next = NULL;
+        
+        return slow;
+    }
+public:
+    TreeNode* sortedListToBST(ListNode* _head) {
+        if (_head == NULL) return NULL;
+        
+        ListNode* mid = splitListInMiddle(_head);
+        
+        TreeNode* nd = new TreeNode(mid->val);
+        if(_head == mid) return nd;
+        
+        nd->left = sortedListToBST(_head);
+        nd->right = sortedListToBST(mid->next);
+        
+        return nd;
+    }
+};
