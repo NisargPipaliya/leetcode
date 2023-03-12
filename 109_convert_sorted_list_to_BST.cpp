@@ -14,6 +14,10 @@ binary search tree.
 2 approaches :
  1st AVLTree. -> according to me it will have extra overhead of rotation.
  2nd simple tree construction from inorder traversal. -> would be more efficient.
+
+
+
+ 100 -> questions completed
 */
 
 
