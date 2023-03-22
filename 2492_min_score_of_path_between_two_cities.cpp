@@ -1,6 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//                              😍😍INTERESTING THING TO KNOW😍😍
+//                               numeric_limits<int>::max() -> THIS TOO RETURNS INT MAX
+//      SO IF WE CHANGE INT TO FLOAT THEN WE CAN ALSO OBTAIN FLOAT MAX, CRAZY RIGHT?
 
 /*
 2492. Minimum Score of a Path Between Two Cities
