@@ -21,7 +21,7 @@ Output: 12
 
 
 DID it recursively -> TLE :)
-but didn't got how to memoize
+but found it difficult how to memoize
 */
 
 //recursive solution
