@@ -25,6 +25,8 @@ There are four consecutive 'T's.
 CONFUSED 🥹
 */
 
+
+// FAILS THE TEST CASE
 class Solution {
     int help(string str,char x, int k)
     {
@@ -55,5 +57,29 @@ public:
     int maxConsecutiveAnswers(string answerKey, int k) {
         // One time maximizing TRUE, other time maximizing FALSE
         return max(help(answerKey,'T',k), help(answerKey,'F',k));
+    }
+};
+
+
+// COMPLETE SOL
+
+class Solution {
+public:
+    int solve(string &s,char b,int &k){
+        int left=0,res=0,size=s.size(),cnt=0;
+        for(int i=0;i<size;i++){
+            if(s[i]==b)
+                cnt++;
+            while(cnt>k){
+                if(s[left]==b)
+                    cnt--;
+                left++;
+            }
+            res=max(i-left+1,res);
+        }
+        return res;
+    }
+    int maxConsecutiveAnswers(string s, int k) {
+        return max(solve(s,'F',k),solve(s,'T',k));  
     }
 };
