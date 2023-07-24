@@ -62,3 +62,52 @@ public:
         return ans;
     }
 };
+
+// fastest sol
+class Solution {
+public:
+    int m, n;
+    bool isValid(int i, int j){
+        if(i>=0 && i<m && j>=0 && j<n) return true;
+        return false;
+    }
+    int orangesRotting(vector<vector<int>>& grid) {
+        n= grid[0].size(),m=grid.size();
+        int ans =0;
+        queue<pair<int,int>> q1;
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                if(grid[i][j] == 1){
+                    ans++;
+                }else if(grid[i][j] == 2){
+                    q1.push({i, j});
+                }
+            }
+        }
+        if(ans == 0) return 0;
+        vector<int> x = {+1, -1, 0, 0};
+        vector<int> y = {0, 0, +1, -1};
+        int time = 0;
+        while(!q1.empty()){
+            int size = q1.size();
+            while(size--){
+                pair<int, int> curr = q1.front();
+                q1.pop();
+                
+                for(int k=0; k<4; k++){
+                    int newX = curr.first + x[k];
+                    int newY = curr.second + y[k];
+                    
+                    if(isValid(newX, newY) && grid[newX][newY] == 1){
+                        grid[newX][newY] = 2;
+                        q1.push({newX, newY});
+                        ans--;
+                    }
+                }
+            }   
+            time++;
+        }
+        if(ans > 0) return -1;
+        return --time;
+    }
+};
